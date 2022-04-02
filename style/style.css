@@ -1,0 +1,15 @@
+p {
+    padding-bottom: 5%;
+    text-transform: uppercase;
+}
+
+.main {
+    padding-top: 3rem;
+}
+
+.header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+}
