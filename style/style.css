@@ -1,0 +1,69 @@
+body {
+    background-image: url('../img/fondo.jpg');
+    background-size: 300px;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+
+.container {
+    width: 85%;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.header {
+    background-image: linear-gradient(to right, #2f2e5b, #BD93CA, #f6ffa1);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.header a {
+    color: white;
+    text-decoration: none;
+
+}
+
+.logo-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.navigation ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navigation ul li {
+    display: inline-block;
+}
+
+#carrito {
+    width: 3rem;
+    height: 3rem;
+}
+
+.main {
+    padding-top: 3rem;
+}
+
+#Informacion {
+    
+}
+
+img {
+   width: 50%;
+   height: auto;
+   display: block;
+   margin: 0px auto;
+}
+
+#carrusel {
+    background-color: rgba(255, 255, 255, 0.74);
+}
