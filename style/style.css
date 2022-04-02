@@ -5,6 +5,7 @@ body {
     background-position: center;
 }
 
+<<<<<<< HEAD
 body::before {
     content: "";
     width: 60%;
@@ -19,6 +20,8 @@ body::before {
 
     opacity: 0.4;
 }
+=======
+>>>>>>> 273864104743cfd94b48aa0e566c05d0811831ae
 
 .container {
     width: 85%;
@@ -32,6 +35,7 @@ body::before {
     top: 0;
     right: 0;
     left: 0;
+    z-index: 100;
 }
 
 .header a {
@@ -64,4 +68,19 @@ body::before {
 
 .main {
     padding-top: 3rem;
+}
+
+#Informacion {
+    
+}
+
+img {
+   width: 50%;
+   height: auto;
+   display: block;
+   margin: 0px auto;
+}
+
+#carrusel {
+    background-color: rgba(255, 255, 255, 0.74);
 }
