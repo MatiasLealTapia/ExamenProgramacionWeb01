@@ -5,6 +5,21 @@ body {
     background-position: center;
 }
 
+body::before {
+    content: "";
+    width: 60%;
+    min-height: 100%;
+    position: fixed;
+    left: 30;
+    right: 30;
+
+    background: #ffffff;
+    background-size: contain;
+    background-position: center;
+
+    opacity: 0.4;
+}
+
 .container {
     width: 85%;
     max-width: 850px;
