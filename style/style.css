@@ -27,6 +27,11 @@ body {
 
 }
 
+.header img {
+    width: 3em;
+    height: 3em;
+}
+
 .logo-nav-container {
     display: flex;
     justify-content: space-between;
@@ -50,15 +55,11 @@ body {
 }
 
 .main {
-    padding-top: 3rem;
-}
-
-#Informacion {
-    
+    padding-top: 5rem;
 }
 
 img {
-   width: 50%;
+   width: 80%;
    height: auto;
    display: block;
    margin: 0px auto;
@@ -66,4 +67,5 @@ img {
 
 #carrusel {
     background-color: rgba(255, 255, 255, 0.74);
+    margin-bottom: 2rem;
 }
