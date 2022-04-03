@@ -5,23 +5,6 @@ body {
     background-position: center;
 }
 
-<<<<<<< HEAD
-body::before {
-    content: "";
-    width: 60%;
-    min-height: 100%;
-    position: fixed;
-    left: 30;
-    right: 30;
-
-    background: #ffffff;
-    background-size: contain;
-    background-position: center;
-
-    opacity: 0.4;
-}
-=======
->>>>>>> 273864104743cfd94b48aa0e566c05d0811831ae
 
 .container {
     width: 85%;
@@ -42,6 +25,11 @@ body::before {
     color: white;
     text-decoration: none;
 
+}
+
+.header img {
+    width: 3em;
+    height: 3em;
 }
 
 .logo-nav-container {
@@ -68,10 +56,6 @@ body::before {
 
 .main {
     padding-top: 3rem;
-}
-
-#Informacion {
-    
 }
 
 img {
