@@ -66,5 +66,5 @@ img {
 }
 
 #carrusel {
-    
+    background-image: linear-gradient(to bottom, #2f2e5b, #BD93CA, #f6ffa1, #BD93CA, #2f2e5b);
 }
