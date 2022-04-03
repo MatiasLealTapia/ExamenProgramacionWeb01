@@ -66,10 +66,6 @@ img {
 }
 
 #carrusel {
-<<<<<<< HEAD
-    background-image: linear-gradient(to bottom, #2f2e5b, #BD93CA, #f6ffa1, #BD93CA, #2f2e5b);
-=======
     background-color: rgba(255, 255, 255, 0.74);
     margin-bottom: 2rem;
->>>>>>> edf4541ad98b1a09e1b931f7f66f91963bf9330d
 }
