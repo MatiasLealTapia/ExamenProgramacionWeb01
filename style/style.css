@@ -70,6 +70,11 @@ img {
     margin-bottom: 2rem;
 }
 
+.jumbotron {
+	position: center;
+	background-color: #fff;
+}
+
 footer{
 	margin-top:50px;
     width:100%;
@@ -196,4 +201,13 @@ footer a:hover{
   footer .content .middle{
     padding-left: 0;
   }
+}
+#middleFooter img{
+	width: 15em;
+    height: 10em;
+}
+
+#leftFooter img{
+	width: 10em;
+    height: 7em;
 }
