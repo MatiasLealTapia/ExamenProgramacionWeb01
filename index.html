@@ -5,15 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="style/style.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <link href="style/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Bull Terrier - Inicio</title>
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <header class="header" id="barramenu">
-        <nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background-image: linear-gradient(135deg, #313552 , #B8405E, #2EB086, #EEE6CE);">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark">
             <div class="container-fluid">
               <a class="navbar-brand" href="#"><img src="./img/Logo.png" alt="Logo.png"></a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,9 +30,9 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Productos
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="productosgato.html" style="color: black;">Gatos</a></li>
-                      <li><a class="dropdown-item" href="productosperro.html" style="color: black;">Perros</a></li>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item text-black" href="productosgato.html">Gatos</a></li>
+                      <li><a class="dropdown-item" href="productosperro.html">Perros</a></li>
                     </ul>
                   </li>
                   <li class="nav-item">
@@ -89,13 +91,13 @@
             </div>
             <div class="container overflow-hidden px-4" id="Informacion">
                 <div class="row gx-5">
-                <div class="col-12">
-                <div class="p-3 border bg-light"><h1 style="text-align: center;">SUSCRIBETE Y AYUDA A LA ORGANIZACI&Oacute;N</h1> <p>Suscribete a nuestro servicio de recompensas pagadas y ¡AYUDA A NUESTRA ORGANIZACION! Se otorgará un 5% de descuento en el total de la venta a todos los clientes que estén suscritos.</p> 
-                <div class="container-sm">
-                  <img src="./img/dona aqui.webp" alt="PAGOS.png">
-                </div>
-                </div>
-                </div>
+                  <div class="col-12">
+                    <div class="p-3 border text-light" id="caja-informacion"><h1 style="text-align: center;">SUSCRIBETE Y AYUDA A LA ORGANIZACI&Oacute;N</h1> <p>Suscribete a nuestro servicio de recompensas pagadas y ¡AYUDA A NUESTRA ORGANIZACION! Se otorgará un 5% de descuento en el total de la venta a todos los clientes que estén suscritos.</p> 
+                      <div class="container-sm" id="img-susc">
+                        <a href="#"><img src="./img/Suscribirse_aqui-removebg.png" alt="PAGOS.png"></a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
             </div>
         </div>   
@@ -128,7 +130,9 @@
           <div class="topic">Recibe notificacion de nuestros descuentos</div>
           <form action="#">
             <input type="text" placeholder="Ingrese Correo Electronico">
+            <div class="enviar">
             <input type="submit" name="" value="Enviar">
+            </div>
             <div class="media-icons">
               <a href="#"><i class="fab fa-facebook-f"></i></a>
               <a href="#"><i class="fab fa-instagram"></i></a>
