@@ -1,6 +1,6 @@
 body {
     /* background-image: url('../img/fondo.jpg'); */
-    background-color: #d9d9d9;
+    background-color: #ffffff;
     background-size: 300px;
     background-attachment: fixed;
     background-position: center;
@@ -14,9 +14,10 @@ body {
 }
 
 .header {
+    background: linear-gradient(to right, #2f2e5b, rgb(110, 31, 81) , rgb(110, 31, 81), rgb(45, 142, 119) , rgb(45, 142, 119), #f6ffa1);
     /* background-image: linear-gradient(to right, #2f2e5b, #BD93CA, #f6ffa1); */
     /* background-color: #343a40; */
-    background-color: #725b1b;
+    /* background-color: #725b1b; */
     position: fixed;
     top: 0;
     right: 0;
@@ -134,7 +135,7 @@ footer .content .right .enviar input[type="submit"]{
   width: 100%;
   font-size: 18px;
   color: #d9d9d9;
-  background: linear-gradient(to right, #2f2e5b, #BD93CA, #f6ffa1);
+  background: linear-gradient(to right, #2f2e5b, #BD93CA, #9b4a7e);
   outline: none;
   border-radius: 5px;
   letter-spacing: 1px;
@@ -145,6 +146,7 @@ footer .content .right .enviar input[type="submit"]{
 footer .content .right .enviar input[type="submit"]:hover{
   /* color:  linear-gradient(to right, #2f2e5b, #BD93CA, #f6ffa1); */
   background:  #343a40;
+  color: #BD93CA;
   transition: all 0.3s ease-in-out;
 }
 footer .content .media-icons a{
@@ -220,7 +222,7 @@ footer a:hover{
 
 #Informacion #caja-informacion{
   border-radius: 5%;
-  background-color: #222222;
+  background-color: #292929;
 }
 
 #img-susc{
