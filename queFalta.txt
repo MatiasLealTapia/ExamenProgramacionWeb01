@@ -1,4 +1,0 @@
-1.llenar productos
-2.registro cliente
-3.ventana pedidos(historial y monitoreo)
-4.suscripcion en el index a fundacion
