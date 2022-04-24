@@ -13,7 +13,7 @@ body {
 }
 
 .header {
-    background-image: linear-gradient(to right, #2f2e5b, #BD93CA, #f6ffa1);
+    background-image: linear-gradient(to right, #2f2e5b, #BD93CA);
     position: fixed;
     top: 0;
     right: 0;
