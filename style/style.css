@@ -14,14 +14,10 @@ body {
 }
 
 .header {
-<<<<<<< HEAD
-    background-image: linear-gradient(to right, #2f2e5b, #BD93CA);
-=======
     background: linear-gradient(to right, #2f2e5b, rgb(110, 31, 81) , rgb(110, 31, 81), rgb(45, 142, 119) , rgb(45, 142, 119), #f6ffa1);
     /* background-image: linear-gradient(to right, #2f2e5b, #BD93CA, #f6ffa1); */
     /* background-color: #343a40; */
     /* background-color: #725b1b; */
->>>>>>> main
     position: fixed;
     top: 0;
     right: 0;
