@@ -17,10 +17,10 @@ $(document).ready(function() {
     })
 });
 
-$(document).ready(function() {
-    $("body").hide();
-})
-window.onload = function() {
-    alert("Cargó la página");
-    $("body").show();
-};
+// $(document).ready(function() {
+//     $("body").hide();
+// })
+// window.onload = function() {
+//     alert("Cargó la página");
+//     $("body").show();
+// };
