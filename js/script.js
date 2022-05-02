@@ -17,6 +17,14 @@ $(document).ready(function() {
     })
 });
 
+function pierdeFoco() {
+    if ($("#calificaciones").val() != 0) {
+        mensaje = "";
+        $("#error").hide();
+    }
+}
+
+
 // $(document).ready(function() {
 //     $("body").hide();
 // })
