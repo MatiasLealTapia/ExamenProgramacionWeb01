@@ -44,7 +44,7 @@ $(document).ready(function() {
                             return array.join('');
                         };
                         precioclp = format(precioclp)
-                        $("#producto-compra").append('<div class="col"><div class="card shadow-sm"><a href="#"><img src='+item.image+' alt="'+item.image+'.png" class="bd-placeholder-img card-img-top" width="100%" height="225" role="img"></a><div class="card-body"><h6 class="card-text">'+item.title+'</h6><div class="d-flex justify-content-between align-items-center"><small class="text-muted"></small></div></div></div></div><div class="col-8"><div class="card shadow-sm"><h2 class="card-text" style="margin: 20px;">'+item.title+'</h2><h3 style="margin: 20px;">$'+precioclp+' CLP</h3><button class="btn-outline-primary" style="margin: 20px;">COMPRAR</button><button class="btn-outline-secondary" style="margin: 20px;">AÑADIR AL CARRITO</button></div></div>')
+                        $("#producto-compra").append('<div class="col"><div class="card shadow-sm"><a href="'+item.image+'"><img src='+item.image+' alt="'+item.image+'.png" class="bd-placeholder-img card-img-top" width="100%" height="225" role="img"></a><div class="card-body"><h6 class="card-text">'+item.title+'</h6><div class="d-flex justify-content-between align-items-center"><small class="text-muted"></small></div></div></div></div><div class="col-8"><div class="card shadow-sm"><h2 class="card-text" style="margin: 20px;">'+item.title+'</h2><h3 style="margin: 20px;">$'+precioclp+' CLP</h3><button class="btn-outline-primary" style="margin: 20px;">COMPRAR</button><button class="btn-outline-secondary" style="margin: 20px;">AÑADIR AL CARRITO</button></div></div>')
                     }
                 });
             })
