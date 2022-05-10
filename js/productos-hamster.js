@@ -48,6 +48,16 @@ $(document).ready(function() {
                 // $("#titulo-productos").append('<p class="card-text">'+item.title+'.</p>')
                 // $("#precio-productos").append('<small class="text-muted">'+item.price+'</small>')
                 let precioclp = Math.trunc(item.price*865.83)
+                function format(num) {
+                    var array = num.toString().split('');
+                    var index = -3;
+                    while (array.length + index > 0) {
+                        array.splice(index, 0, ',');
+                        index -= 4;
+                    }
+                    return array.join('');
+                };
+                precioclp = format(precioclp)
                 $("#productos").append('<div class="col"> <form action="productocompra.html" id="miForm"> <div class="card shadow-sm" id="imagen-productos"> <input type="text" name="id-producto" id="id-producto" value="'+item.id+'" style="display: none;"> <img src='+item.image+' alt="logo.png" class="bd-placeholder-img card-img-top" width="100%" height="225" role="img"> <div class="card-body" id="titulo-productos"> <p class="card-text">'+item.title+'.</p> <div class="d-flex justify-content-between align-items-center" id="precio-productos"> <small class="text-muted">$'+precioclp+' CLP</small> <input type="submit" class="btn btn-primary" id="enviar" value="Ver producto"> </div></div></div></form></div>')
             });
         })
