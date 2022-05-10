@@ -9,9 +9,13 @@ $(document).ready(function() {
         const result = getUrlParams(location.href);
         Object.entries(result).forEach(par =>{
             const clave = par[0];
-            const valor = par[1];
+            let valor = par[1];
             if(clave == 'category'){
                 return url = 'https://matiaslealtapia.github.io/APItest/productos/'+valor+'.json'
+            }
+            const valorError = valor.substring(0,1)+'#'
+            if(valor == valorError){
+                valor = valor.substring(0,1)
             }
             if(clave == 'id'){
                 return id = valor
@@ -55,7 +59,6 @@ $(document).ready(function() {
             })
             .finally(() => {
                 $(".loading-screen").hide();
-                console.log(result)
             })
     } catch (error) {
         console.log(error)
