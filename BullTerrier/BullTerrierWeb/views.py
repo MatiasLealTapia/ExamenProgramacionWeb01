@@ -13,3 +13,6 @@ def productosperro(request):
 
 def productoshamster(request):
     return render(request, 'BullTerrierWeb/productoshamster.html')
+
+def productocompra(request):
+    return render(request, 'BullTerrierWeb/productocompra.html')

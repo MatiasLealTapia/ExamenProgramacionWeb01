@@ -3,7 +3,6 @@ $(document).ready(function() {
     let url = 'https://matiaslealtapia.github.io/APItest/productos/gato.json'
     const $cargando = document.getElementById("loading");
     const $tarjetas = document.getElementById("productos");
-    
     fetch(url)
         .then(res => {
             if (res.ok == true) {
