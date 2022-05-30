@@ -18,30 +18,30 @@
     <header class="header" id="barramenu">
         <nav class="navbar sticky-top navbar-expand-lg navbar-dark">
             <div class="container-fluid">
-              <a class="navbar-brand" href="index.html"><img src="./img/Logo.png" alt="Logo.png"></a>
+              <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'BullTerrierWeb/img/Logo.png' %}" alt="Logo.png"></a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Inicio</a>
                   </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Productos
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item text-black" href="productosgato.html">Gatos</a></li>
-                      <li><a class="dropdown-item" href="productosperro.html">Perros</a></li>
-                      <li><a class="dropdown-item" href="productoshamster.html">Ejemplo</a></li>
+                      <li><a class="dropdown-item text-black" href="{% url 'productosgato' %}">Gatos</a></li>
+                      <li><a class="dropdown-item" href="{% url 'productosperro' %}">Perros</a></li>
+                      <li><a class="dropdown-item" href="{% url 'productoshamster' %}">Ejemplo</a></li>
                     </ul>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="carrito.html">Carrito</a>
+                    <a class="nav-link" href="{% url 'carrito' %}">Carrito</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="pedidos.html">Pedidos</a>
+                    <a class="nav-link" href="{% url 'pedidos' %}">Pedidos</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="registro.html">Iniciar Sesi&oacute;n</a>

@@ -16,3 +16,9 @@ def productoshamster(request):
 
 def productocompra(request):
     return render(request, 'BullTerrierWeb/productocompra.html')
+
+def pedidos(request):
+    return render(request, 'BullTerrierWeb/pedidos.html')
+
+def carrito(request):
+    return render(request, 'BullTerrierWeb/carrito.html')
