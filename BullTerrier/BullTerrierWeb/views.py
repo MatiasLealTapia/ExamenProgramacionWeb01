@@ -22,3 +22,6 @@ def pedidos(request):
 
 def carrito(request):
     return render(request, 'BullTerrierWeb/carrito.html')
+
+def registro(request):
+    return render(request, 'BullTerrierWeb/registro.html')
