@@ -46,12 +46,11 @@ class Pedido(models.Model):
         return self.idPed
 
 class Comentario(models.Model):
-    idComent = models.IntegerField(primary_key=True, verbose_name="Id Comentario")
-    nombre = models.CharField(max_length=50, verbose_name="Nombre comentario")
-    apellido = models.CharField(max_length=50, verbose_name="Apellido comentario")
-    correo = models.CharField(max_length=100, verbose_name="Correo comentario")
-    nota = models.IntegerField(verbose_name="Nota comentario")
+    idComent = models.IntegerField(primary_key=True, verbose_name="Id")
+    nombre = models.CharField(max_length=50, verbose_name="Nombre")
+    apellido = models.CharField(max_length=50, verbose_name="Apellido")
+    correo = models.CharField(max_length=100, verbose_name="Correo electronico")
+    nota = models.IntegerField(verbose_name="Nota")
     cometario = models.CharField(max_length=500, null=True, verbose_name="Comentario")
-
     def __str__(self):
         return self.idComent
