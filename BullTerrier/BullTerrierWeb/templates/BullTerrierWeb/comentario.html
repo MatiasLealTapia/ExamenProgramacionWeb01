@@ -66,11 +66,13 @@
     <main>
         <div class="container">
             <form action="envio" enctype="multipart/form-data" method="GET" name="formComen" id="formulario">
+                {% csrf_token %}
                 <div class="mb-3">
                     <div class="row">
+                        {{ form.as_table }}
                         <div class="col">
                             <label for="nombre" class="form-label">Nombre (Obligatorio)</label>
-                            <input type="text" class="form-control" name="nombre" placeholder="Ingrese su Nombre" required>
+                            <input type="text" class="form-control" name="nombre" id="nombre" maxlength="50" placeholder="Ingrese su Nombre" required>
                         </div>
                         <div class="col">
                             <label for="apellido" class="form-label">Apellido (Obligatorio)</label>

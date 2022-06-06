@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .forms import ComentarioForm
 
 # Create your views here.
 
@@ -8,6 +9,14 @@ def carrito(request):
 
 # Vista Comentario
 def comentario(request):
+    datos = {
+        'form': ComentarioForm()
+    }
+    
+    if request.method== 'POST':
+        formulario = ComentarioForm(request.POST)
+        if formulario.is_valid:
+            formulario.save()
     return render(request, 'BullTerrierWeb/comentario.html')
 
 # Vista Index
