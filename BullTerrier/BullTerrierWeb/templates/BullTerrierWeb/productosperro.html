@@ -9,7 +9,7 @@
     <link href="{% static 'BullTerrierWeb/css/style.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="js/productos-perro.js"></script>
+    <script src="{% static 'BullTerrierWeb/js/productos-perro.js' %}"></script>
     <title>Bull Terrier - Perros</title>
 </head>
 <body>
@@ -109,7 +109,7 @@
                   <div class="right box">
                       <br>
                       <div class="topic">Dejanos tu opinion, reclamo o sugerencia</div>
-                      <form action="comentario.html">
+                      <form action="comentario">
                         <!-- <input type="text" placeholder="Ingrese su Comentario"> -->
                         <div class="enviar">
                         <input type="submit" name="" value="Escribe tu comentario">

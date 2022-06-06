@@ -41,3 +41,7 @@ def registro(request):
 # Vista Suscribirse
 def suscribirse(request):
     return render(request, 'BullTerrierWeb/suscribirse.html')
+
+# Vista Envio
+def envio(request):
+    return render(request, 'BullTerrierWeb/envio.html')

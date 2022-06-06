@@ -10,7 +10,7 @@ $(document).ready(function() {
         if (mensaje != "") {
             $("#error").html(mensaje);
             $("#error").show();
-            event.preventDefault();
+            evt.preventDefault();
         } else if (mensaje == "") {
             alert("Tu comentario se envio correctamente. Gracias!")
         }
