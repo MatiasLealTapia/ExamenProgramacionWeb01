@@ -7,7 +7,7 @@ def carrito(request):
     return render(request, 'BullTerrierWeb/carrito.html')
 
 # Vista Comentario
-def carrito(request):
+def comentario(request):
     return render(request, 'BullTerrierWeb/comentario.html')
 
 # Vista Index

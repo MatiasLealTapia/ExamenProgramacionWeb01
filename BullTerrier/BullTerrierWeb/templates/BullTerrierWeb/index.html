@@ -70,12 +70,12 @@
                     </div>
                     <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="10000">
-                        <a href="./productosperro.html"><img src="./img/carousel/perros.png" class="d-block w-400" alt="carrito_compras.png" height="400"></a>
+                        <a href="{% url 'productosperro' %}"><img src="{%static '\BullTerrierWeb\img\carousel\perros.png' %}" class="d-block w-400" alt="carrito_compras.png" height="400"></a>
                         <div class="carousel-caption d-none d-md-block">
                         </div>
                     </div>
                     <div class="carousel-item" data-bs-interval="2000">
-                        <a href="./productosgato.html"><img src="./img/carousel/gatos.png" class="d-block w-400" alt="carrito_compras.png" height="400"></a>
+                        <a href="{% url 'productosgato' %}"><img src="{%static '\BullTerrierWeb\img\carousel\gatos.png' %}" class="d-block w-400" alt="carrito_compras.png" height="400"></a>
                         <div class="carousel-caption d-none d-md-block">
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                   <div class="col-12">
                     <div class="p-3 border text-light" id="caja-informacion"><h1 style="text-align: center;">SUSCRIBETE Y AYUDA A LA ORGANIZACI&Oacute;N</h1> <p>Suscribete a nuestro servicio de recompensas pagadas y ¡AYUDA A NUESTRA ORGANIZACION! Se otorgará un 5% de descuento en el total de la venta a todos los clientes que estén suscritos.</p> 
                       <div class="container-sm" id="img-susc">
-                        <a href="suscribirse.html"><img src="{% static 'BullTerrierWeb/img/Suscribirse_aqui-removebg.png' %}" alt="PAGOS.png"></a>
+                        <a href="{% url 'suscribirse' %}"><img src="{% static 'BullTerrierWeb/img/Suscribirse_aqui-removebg.png' %}" alt="PAGOS.png"></a>
                       </div>
                     </div>
                   </div>
