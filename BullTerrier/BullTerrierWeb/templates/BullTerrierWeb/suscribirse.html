@@ -9,7 +9,7 @@
     <link href="{% static 'BullTerrierWeb/css/style.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'BullTerrierWeb/js/script.js' %}"></script>
     <title>Suscribete</title>
 </head>
 
@@ -64,22 +64,24 @@
     <br>
     <main>
         <div class="container">
-            <form action="index.html" enctype="multipart/form-data" method="GET" name="formComen">
+            <form action="envio" enctype="multipart/form-data" method="GET" name="formComen">
+                {% csrf_token %}
+                {{ form.as_table }}
                 <div class="mb-3">
                     <div class="row">
                         <div class="col">
                             <label for="nombre" class="form-label">Nombre (Obligatorio)</label>
-                            <input type="text" class="form-control" name="nombre" placeholder="Ingrese su Nombre">
+                            <input type="text" class="form-control" name="nombre" placeholder="Ingrese su Nombre" required>
                         </div>
                         <div class="col">
                             <label for="apellido" class="form-label">Apellido (Obligatorio)</label>
-                            <input type="text" class="form-control" name="apellido" placeholder="Ingrese su Apellido">
+                            <input type="text" class="form-control" name="apellido" placeholder="Ingrese su Apellido" required>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <label for="correo" class="form-label">Direcci&oacute;n de Correo (Obligatorio)</label>
-                    <input type="email" class="form-control" id="correo" name="correo">
+                    <input type="email" class="form-control" id="correo" name="correo" required>
                 </div>
                 <label for="donacion">Donaci&oacute;n (Obligatorio)</label>
                 <div class="mb-3 form-floating">
@@ -134,7 +136,7 @@
             <div class="right box">
                 <br>
                 <div class="topic">Dejanos tu opinion, reclamo o sugerencia</div>
-                <form action="comentario.html">
+                <form action="comentario">
                     <!-- <input type="text" placeholder="Ingrese su Comentario"> -->
                     <div class="enviar">
                         <input type="submit" name="" value="Escribe tu comentario">
