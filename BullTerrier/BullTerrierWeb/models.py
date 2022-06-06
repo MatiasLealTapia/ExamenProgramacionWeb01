@@ -1,6 +1,3 @@
-from operator import mod
-from pyexpat import model
-from sys import maxsize
 from django.db import models
 # Create your models here.
 
@@ -11,22 +8,22 @@ class Usuario(models.Model):
 
     def __str__(self):
         return self.idUsu
+    
+class Categoria(models.Model):
+    idCat = models.IntegerField(primary_key=True, verbose_name="Id Categoria", default="1")
+    nomCat = models.CharField(max_length=30, verbose_name="Nombre Categoria", default="Perro")
+
+    def __str__(self):
+        return self.nomCat
 
 class Producto(models.Model):
     idPro = models.IntegerField(primary_key=True, verbose_name="Id Producto") 
     nombrePro = models.CharField(max_length=100, verbose_name="Nombre Producto")
     precioPro = models.IntegerField(verbose_name="Precio Producto")
-    #idCat = models.IntegerField(primary_key=True, verbose_name="Id Categoria")
-
+    idCat = models.ForeignKey(Categoria, on_delete=models.CASCADE, default="1")
+    
     def __str__(self):
         return self.idPro
-
-class Categoria(models.Model):
-    idCat = models.IntegerField(primary_key=True, verbose_name="Id Categoria")
-    nomCat = models.CharField(max_length=30, verbose_name="Nombre Categoria")
-
-    def __str__(self):
-        return self.idCat
 
 class Compra(models.Model):
     idCom = models.IntegerField(primary_key=True, verbose_name="Id Compra")
