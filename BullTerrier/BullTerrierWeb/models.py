@@ -45,11 +45,11 @@ class Pedido(models.Model):
         return self.descPed
 
 class Comentario(models.Model):
-    idComent = models.IntegerField(primary_key=True, verbose_name="Id")
+    idComent = models.AutoField(primary_key=True, verbose_name="Id")
     nombre = models.CharField(max_length=50, verbose_name="Nombre")
     apellido = models.CharField(max_length=50, verbose_name="Apellido")
     correo = models.CharField(max_length=100, verbose_name="Correo electronico")
-    nota = models.IntegerField(verbose_name="Nota")
-    cometario = models.CharField(max_length=500, null=True, verbose_name="Comentario")
+    calificacion = models.IntegerField(verbose_name="Calificación", default="0")
+    comentario = models.CharField(max_length=500, null=True, verbose_name="Comentario")
     def __str__(self):
-        return self.idComent
+        return self.correo

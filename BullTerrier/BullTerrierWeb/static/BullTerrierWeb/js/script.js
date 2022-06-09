@@ -3,7 +3,7 @@ $(document).ready(function() {
     $("#formulario").submit(function() {
         var mensaje = "";
 
-        if ($("#calificaciones").val() == 0) {
+        if ($("#id_calificacion").val() == 0) {
             mensaje = "Elija una calificaci&oacute;n";
         }
 
@@ -20,7 +20,7 @@ $(document).ready(function() {
 
 
 function pierdeFoco() {
-    if ($("#calificaciones").val() != 0) {
+    if ($("#id_calificacion").val() != 0) {
         mensaje = "";
         $("#error").hide();
     }

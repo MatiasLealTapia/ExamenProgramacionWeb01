@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import ComentarioForm
+from .models import Comentario
 
 # Create your views here.
 
@@ -13,11 +14,15 @@ def comentario(request):
         'form': ComentarioForm()
     }
     
-    if request.method== 'POST':
+    if request.method=='POST':
         formulario = ComentarioForm(request.POST)
-        if formulario.is_valid:
-            formulario.save()
-    return render(request, 'BullTerrierWeb/comentario.html')
+        if formulario.is_valid():
+            formulario.save()            
+            mensaje="Enviado"
+        else:
+            mensaje="No enviado"
+        return render(request, 'BullTerrierWeb/envio.html', mensaje)
+    return render(request, 'BullTerrierWeb/comentario.html', datos)
 
 # Vista Index
 def home(request):
@@ -53,4 +58,8 @@ def suscribirse(request):
 
 # Vista Envio
 def envio(request):
-    return render(request, 'BullTerrierWeb/envio.html')
+    if True:
+        mensaje="Enviado"
+    else:
+        mensaje="No enviado"
+    return render(request, 'BullTerrierWeb/envio.html', mensaje)
