@@ -62,3 +62,7 @@ def envio(request):
         'envio': "Mensaje invalido"         
     }
     return render(request, 'BullTerrierWeb/envio.html', mensaje)
+
+# Vista header
+def base(request):
+    return render(request, 'BullTerrierWeb/base.html')
