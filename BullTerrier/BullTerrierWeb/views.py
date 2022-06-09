@@ -18,9 +18,9 @@ def comentario(request):
         formulario = ComentarioForm(request.POST)
         if formulario.is_valid():
             formulario.save()            
-            mensaje="Enviado"
-        else:
-            mensaje="No enviado"
+            mensaje={
+                'envio': "Enviado"         
+            }
         return render(request, 'BullTerrierWeb/envio.html', mensaje)
     return render(request, 'BullTerrierWeb/comentario.html', datos)
 
@@ -58,8 +58,7 @@ def suscribirse(request):
 
 # Vista Envio
 def envio(request):
-    if True:
-        mensaje="Enviado"
-    else:
-        mensaje="No enviado"
+    mensaje={
+        'envio': "Mensaje invalido"         
+    }
     return render(request, 'BullTerrierWeb/envio.html', mensaje)
