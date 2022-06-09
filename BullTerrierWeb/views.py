@@ -70,12 +70,17 @@ def base(request):
 # Vista Añadir producto
 
 def addProducto(request):
+    if Producto.objects.all().count()==0:
+        idProducto=1
+    else:
+        idProducto=Producto.objects.all().count()+1
     datos = {
+        'idProducto':idProducto,
         'form': AddProductoForm(),
         'categorias': Categoria.objects.all()
     }
     if request.method == "POST":
-        producto = AddProductoForm(request.POST)
+        producto = AddProductoForm(request.POST, request.FILES)
         if producto.is_valid():
             producto.idPro = request.POST.get("id_idPro")
             producto.nombrePro = request.POST.get("id_nombrePro")
