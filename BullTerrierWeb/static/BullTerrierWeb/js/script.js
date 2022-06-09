@@ -15,14 +15,53 @@ $(document).ready(function() {
             alert("Tu comentario se envio correctamente. Gracias!")
         }
     })
+    $("#formAddProducto").submit(function() {
+        var mensaje = "";
+
+        if ($("#id_idCat").val() == 0) {
+            mensaje = "Seleccione una categor&iacute;a";
+        }
+
+        if (mensaje != "") {
+            $("#error").html(mensaje);
+            $("#error").show();
+            event.preventDefault();
+        }
+    })
+    const $seleccionArchivo = document.querySelector("#id_imgPro");
+    const $previsualizar = document.querySelector("#imagenPrevisualizada")
+    $seleccionArchivo.addEventListener("change", () => {
+        const archivo = $seleccionArchivo.files;
+        if (!archivo || !archivo.length) {
+            $previsualizar.scr = "";
+            return;
+        }
+        const primerArchivo = archivo[0];
+        const objectURL = URL.createObjectURL(primerArchivo);
+        $previsualizar.src = objectURL;
+    });
 });
-
-
 
 function pierdeFoco() {
     if ($("#id_calificacion").val() != 0) {
-        mensaje = "";
+        var mensaje = "";
+        $("#error").html(mensaje);
         $("#error").hide();
+    }
+    else{
+        var mensaje = "Elija una calificaci&oacute;n";
+        $("#error").html(mensaje);
+        $("#error").show();
+    }
+    if ($("#id_idCat").val() != 0) {
+        var mensaje = "";
+        $("#error").html(mensaje);
+        $("#error").hide();
+    }
+    else{
+        var mensaje = "Seleccione una categor&iacute;a";
+        $("#error").html(mensaje);
+        $("#error").show();
     }
 }
 

@@ -1,4 +1,6 @@
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from .views import carrito, comentario, home, pedidos, productocompra, productosgato, productoshamster, productosperro, registro, suscribirse, envio, base, addProducto
 
 urlpatterns = [
@@ -29,3 +31,6 @@ urlpatterns = [
     #Añadir productos
     path('addProducto', addProducto, name="addProducto"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

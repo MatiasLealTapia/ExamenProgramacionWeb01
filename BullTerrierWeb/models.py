@@ -1,4 +1,7 @@
+from distutils.command.upload import upload
 from django.db import models
+import datetime
+import os
 # Create your models here.
 
 class Usuario(models.Model):
@@ -16,11 +19,19 @@ class Categoria(models.Model):
     def __str__(self):
         return self.nomCat
 
+def filepath(request, filename):
+    old_filename = filename
+    timeNow = datetime.datetime.now().strftime('%Y%m%d%H:%M:%S')
+    filename = "%s%s" % (timeNow, old_filename)
+    return os.path.join('uploads/', filename)
+
 class Producto(models.Model):
     idPro = models.IntegerField(primary_key=True, verbose_name="Id Producto") 
     nombrePro = models.CharField(max_length=100, verbose_name="Nombre Producto")
     precioPro = models.IntegerField(verbose_name="Precio Producto")
+    descripPro = models.CharField(max_length=500, default="" ,verbose_name="Descripción")
     idCat = models.ForeignKey(Categoria, on_delete=models.CASCADE, default="0", verbose_name="Categoría")
+    imgPro = models.ImageField(upload_to="productos", null=True, blank=True)
     
     def __str__(self):
         return self.nombrePro

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .forms import ComentarioForm
-from .models import Comentario
+from .forms import ComentarioForm, AddProductoForm
+from .models import Comentario, Categoria, Producto
 
 # Create your views here.
 
@@ -70,4 +70,23 @@ def base(request):
 # Vista Añadir producto
 
 def addProducto(request):
-    return render(request, 'BullTerrierWeb/addProducto.html')
+    datos = {
+        'form': AddProductoForm(),
+        'categorias': Categoria.objects.all()
+    }
+    if request.method == "POST":
+        producto = AddProductoForm(request.POST)
+        if producto.is_valid():
+            producto.idPro = request.POST.get("id_idPro")
+            producto.nombrePro = request.POST.get("id_nombrePro")
+            producto.precioPro = request.POST.get("id_precioPro")
+            producto.descripPro = request.POST.get("id_descripPro")
+            producto.idCat = request.POST.get("id_idCat")
+            producto.imgPro = request.FILES.get("id_imgPro")
+        
+            producto.save()
+            mensaje={
+                'envio': "Enviado"         
+                }
+            return render(request, 'BullTerrierWeb/envio.html', mensaje)
+    return render(request, 'BullTerrierWeb/addProducto.html', datos)
