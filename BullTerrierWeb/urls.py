@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import carrito, comentario, home, pedidos, productocompra, productosgato, productoshamster, productosperro, registro, suscribirse, envio, base
+from .views import carrito, comentario, home, pedidos, productocompra, productosgato, productoshamster, productosperro, registro, suscribirse, envio, base, addProducto
 
 urlpatterns = [
     #Carrito
@@ -24,6 +24,8 @@ urlpatterns = [
     path('suscribirse', suscribirse, name="suscribirse"),
     #Envio
     path('envio', envio, name="envio"),
-    #Header
+    #Base (header y footer)
     path('base', base, name="base"),
+    #Añadir productos
+    path('addProducto', addProducto, name="addProducto"),
 ]

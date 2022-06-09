@@ -63,6 +63,11 @@ def envio(request):
     }
     return render(request, 'BullTerrierWeb/envio.html', mensaje)
 
-# Vista header
+# Vista Base (header y footer)
 def base(request):
     return render(request, 'BullTerrierWeb/base.html')
+
+# Vista Añadir producto
+
+def addProducto(request):
+    return render(request, 'BullTerrierWeb/addProducto.html')
