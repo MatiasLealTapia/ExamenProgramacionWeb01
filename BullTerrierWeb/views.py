@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import ComentarioForm, AddProductoForm
+from .forms import ComentarioForm, AddProductoForm, RemoveProductoForm
 from .models import Comentario, Categoria, Producto
 
 # Create your views here.
@@ -95,3 +95,24 @@ def addProducto(request):
                 }
             return render(request, 'BullTerrierWeb/envio.html', mensaje)
     return render(request, 'BullTerrierWeb/addProducto.html', datos)
+
+# Vista Borrar Productos
+
+def removeProducto(request):
+    datos = {
+        'productos':Producto.objects.all()
+    }
+    # if request.method == "POST":
+    #     producto=RemoveProductoForm(request.POST)
+    #     producto.idPro = request.POST.get("id_idPro")
+    #     idPro = producto.idPro
+    #     remover = Producto.objects.get(idPro=idPro)
+    #     remover.delete()
+    #     return redirect(to="removeProducto")
+    return render(request, 'BullTerrierWeb/removeProducto.html', datos)
+
+def comentariosLista(request):
+    datos = {
+        'comentarios':Comentario.objects.all()
+    }
+    return render(request, 'BullTerrierWeb/comentariosLista.html', datos)

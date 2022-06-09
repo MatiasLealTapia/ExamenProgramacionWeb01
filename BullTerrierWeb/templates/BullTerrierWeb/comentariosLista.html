@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% extends 'BullTerrierWeb/base.html' %}
+    {% block content %}
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link href="{% static 'BullTerrierWeb/css/style.css' %}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{% static 'BullTerrierWeb/js/script.js' %}"></script>
+    <title>Comentarios</title>
+</head>
+<body>
+    <main class="main">
+        <div class="container-sm">
+            <br>
+            <div class="container overflow-hidden px-4" id="Informacion">
+                <div class="row gx-5">
+                    <div class="col-12">
+                        <div class="p-3 border bg-light" style="text-align: center;">
+                            <h1>Seccion comentarios</h1>
+                            <p>comentarios</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <div class="mb-3">
+                    <div class="row">
+                        <p>Listado de productos para borrar:</p>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <table border=2 class="table">
+                            <tr><td>ID Comentario</td>
+                                <td>Nombre</td>
+                                <td>Apellido</td>
+                                <td>Correo</td>
+                                <td>Calificacion</td>
+                                <td>Comentario</td>
+                            </tr>
+                            {% for com in comentarios %}
+                                <tr>
+                                    <td>{{com.idComent}}</td>
+                                    <td>{{com.nombre}}</td>
+                                    <td>{{com.apellido}}</td>
+                                    <td>{{com.correo}}</td>
+                                    <td>{{com.calificacion}}</td>
+                                    <td>{{com.comentario}}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary" id="enviar" value="Enviar">Enviar</button>
+                </div>
+                <div id="error" class="alert alert-danger" role="alert"></div>
+            </form>
+            </div>
+        </div>
+    </main>
+    {% endblock %}
+</body>
+</html>

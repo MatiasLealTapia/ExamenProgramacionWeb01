@@ -12,3 +12,8 @@ class AddProductoForm(ModelForm):
     class Meta:
         model = Producto
         fields = ['idPro', 'nombrePro', 'precioPro', 'descripPro', 'idCat' , 'imgPro']
+        
+class RemoveProductoForm(ModelForm):
+    class Meta:
+        model = Producto
+        fields = ['idPro']

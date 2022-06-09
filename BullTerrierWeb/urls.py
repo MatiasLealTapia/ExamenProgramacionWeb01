@@ -1,13 +1,15 @@
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import carrito, comentario, home, pedidos, productocompra, productosgato, productoshamster, productosperro, registro, suscribirse, envio, base, addProducto
+from .views import carrito, comentario, home, pedidos, productocompra, productosgato, productoshamster, productosperro, registro, suscribirse, envio, base, addProducto, removeProducto, comentariosLista
 
 urlpatterns = [
     #Carrito
     path('carrito', carrito, name="carrito"),
     #Comentario
     path('comentario', comentario, name="comentario"),
+    #Comentarios tabla
+    path('comentariosLista', comentariosLista, name="comentariosLista"),
     #Index
     path('', home, name="index"),
     #Pedidos
@@ -30,6 +32,8 @@ urlpatterns = [
     path('base', base, name="base"),
     #Añadir productos
     path('addProducto', addProducto, name="addProducto"),
+    #Borrar productos
+    path('removeProducto', removeProducto, name="removeProducto"),
 ]
 
 if settings.DEBUG:

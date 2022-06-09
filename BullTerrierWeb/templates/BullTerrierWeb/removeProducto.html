@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% extends 'BullTerrierWeb/base.html' %}
+    {% block content %}
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link href="{% static 'BullTerrierWeb/css/style.css' %}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{% static 'BullTerrierWeb/js/script.js' %}"></script>
+    <title>Remover producto</title>
+</head>
+<body>
+    <main class="main">
+        <div class="container-sm">
+            <br>
+            <div class="container overflow-hidden px-4" id="Informacion">
+                <div class="row gx-5">
+                    <div class="col-12">
+                        <div class="p-3 border bg-light" style="text-align: center;">
+                            <h1>Remover producto</h1>
+                            <p>Borra los productos que no necesitas desde esta p&aacute;gina.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+            <form enctype="multipart/form-data" method="post" name="formRemoveProducto" id="formRemoveProducto">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <div class="row">
+                        <p>Listado de productos para borrar:</p>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <table border=2 class="table">
+                            <tr><td>ID Producto</td>
+                                <td>Nombre Producto</td>
+                                <td>Precio</td>
+                                <td>Descripci&oacute;n</td>
+                                <td>Imagen</td>
+                                <td>Borrar</td>
+                            </tr>
+                            {% for prod in productos %}
+                                <tr>
+                                    <input type="hidden" name="idPro" id="id_idPro" value="{{prod.idPro}}" required>
+                                    <td>{{prod.idPro}}</td>
+                                    <td>{{prod.nombrePro}}</td>
+                                    <td>{{prod.precioPro}}</td>
+                                    <td>{{prod.descripPro}}</td>
+                                    <td><img src="{{prod.imgPro.url}}" class="img-producto-sm"></td>
+                                    <td><button type="submit" class="btn btn-danger" id="borrar" value="Borrar">Borrar</button></td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary" id="enviar" value="Enviar">Enviar</button>
+                </div>
+                <div id="error" class="alert alert-danger" role="alert"></div>
+            </form>
+            </div>
+        </div>
+    </main>
+    {% endblock %}
+</body>
+</html>
