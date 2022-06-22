@@ -34,19 +34,19 @@ def pedidos(request):
 
 # Vista Producto Compra
 def productocompra(request):
-    return render(request, 'BullTerrierWeb/productocompra.html')
+    return render(request, 'BullTerrierWeb/producto/productocompra.html')
 
 # Vista Productos Gato
 def productosgato(request):
-    return render(request, 'BullTerrierWeb/productosgato.html')
+    return render(request, 'BullTerrierWeb/producto/productosgato.html')
 
 # Vista Productos Hamster
 def productoshamster(request):
-    return render(request, 'BullTerrierWeb/productoshamster.html')
+    return render(request, 'BullTerrierWeb/producto/productoshamster.html')
 
 # Vista Productos Perro
 def productosperro(request):
-    return render(request, 'BullTerrierWeb/productosperro.html')
+    return render(request, 'BullTerrierWeb/producto/productosperro.html')
 
 # Vista Registro
 def registro(request):
@@ -94,7 +94,7 @@ def addProducto(request):
                 'envio': "Enviado"         
                 }
             return render(request, 'BullTerrierWeb/envio.html', mensaje)
-    return render(request, 'BullTerrierWeb/addProducto.html', datos)
+    return render(request, 'BullTerrierWeb/producto/addProducto.html', datos)
 
 # Vista Borrar Productos
 
@@ -109,7 +109,7 @@ def removeProducto(request):
     #     remover = Producto.objects.get(idPro=idPro)
     #     remover.delete()
     #     return redirect(to="removeProducto")
-    return render(request, 'BullTerrierWeb/removeProducto.html', datos)
+    return render(request, 'BullTerrierWeb/producto/removeProducto.html', datos)
 
 def comentariosLista(request):
     datos = {

@@ -23,8 +23,8 @@
                 <div class="row gx-5">
                     <div class="col-12">
                         <div class="p-3 border bg-light" style="text-align: center;">
-                            <h1>Seccion comentarios</h1>
-                            <p>comentarios</p>
+                            <h1>Listado completo de Comentarios</h1>
+                            <p>Aqui podras ver los comentarios escritos por la comunidad (PD: Los comentarios anteriores a la primera ID fueron eliminados)</p>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,18 @@
                                     <td>{{com.nombre}}</td>
                                     <td>{{com.apellido}}</td>
                                     <td>{{com.correo}}</td>
-                                    <td>{{com.calificacion}}</td>
+                                    <td>{% if com.calificacion == 1 %}
+                                        Excelente ({{com.calificacion}})
+                                        {% elif com.calificacion == 2 %}
+                                        Buena ({{com.calificacion}})
+                                        {% elif com.calificacion == 3 %}
+                                        Regular ({{com.calificacion}})
+                                        {% elif com.calificacion == 4 %}
+                                        Mala ({{com.calificacion}})
+                                        {% elif com.calificacion == 5 %}
+                                        Pesima ({{com.calificacion}})
+                                        {% endif %}
+                                    </td>
                                     <td>{{com.comentario}}</td>
                                 </tr>
                             {% endfor %}
