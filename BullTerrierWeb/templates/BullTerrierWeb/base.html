@@ -67,12 +67,12 @@
         <div class="right box">
             <br>
             <div class="topic">Dejanos tu opinion, reclamo o sugerencia</div>
-            <form action="comentario">
+            <form action="{% url 'comentario' %}">
                 <div class="enviar">
                     <input type="submit" name="" value="Escribe tu comentario">
                 </div>
             </form>
-            <form action="comentariosLista">
+            <form action="{% url 'comentariosLista' %}">
                 <div class="enviar">
                     <input type="submit" name="" value="Listado de comentarios">
                 </div>

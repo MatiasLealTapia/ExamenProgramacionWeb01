@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_interface',
     'django.contrib',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,7 +43,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'BullTerrierWeb',
     'rest_producto',
+    'colorfield',
+    'django.contrib.humanize',
 ]
+
+X_FRAME_OPTIONS = "SAMEORIGIN"
+SILENCED_SYSTEM_CHECKS = ["security.W019"]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

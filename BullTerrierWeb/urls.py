@@ -15,13 +15,13 @@ urlpatterns = [
     #Pedidos
     path('pedidos', pedidos, name="pedidos"),
     #Producto Compra
-    path('productocompra', productocompra, name="productocompra"),
+    path('productos/producto', productocompra, name="productocompra"),
     #Productos gato
-    path('productosgato', productosgato, name="productosgato"),
+    path('productos/gato', productosgato, name="productosgato"),
     #Productos Hamster
-    path('productoshamster', productoshamster, name="productoshamster"),
+    path('productos/hamster', productoshamster, name="productoshamster"),
     #Productos Perro
-    path('productosperro', productosperro, name="productosperro"),
+    path('productos/perro', productosperro, name="productosperro"),
     #Registro
     path('registro', registro, name="registro"),
     #Suscribirse
@@ -31,9 +31,9 @@ urlpatterns = [
     #Base (header y footer)
     path('base', base, name="base"),
     #Añadir productos
-    path('addProducto', addProducto, name="addProducto"),
+    path('productos/add', addProducto, name="addProducto"),
     #Borrar productos
-    path('removeProducto', removeProducto, name="removeProducto"),
+    path('productos/remove', removeProducto, name="removeProducto"),
 ]
 
 if settings.DEBUG:

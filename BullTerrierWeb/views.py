@@ -38,7 +38,11 @@ def productocompra(request):
 
 # Vista Productos Gato
 def productosgato(request):
-    return render(request, 'BullTerrierWeb/producto/productosgato.html')
+    productos = Producto.objects.all().filter(idCat=3)
+    data = {
+        'productos':productos
+    }
+    return render(request, 'BullTerrierWeb/producto/productosgato.html', data)
 
 # Vista Productos Hamster
 def productoshamster(request):
