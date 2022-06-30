@@ -1,7 +1,11 @@
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import carrito, comentario, home, pedidos, productocompra, productosgato, productoshamster, productosperro, registro, suscribirse, addProducto, listaProducto, comentariosLista, editarProducto, removeProducto, register
+from .views import carrito, comentario, home, pedidos, productocompra, productosgato, productoshamster, productosperro, registro, suscribirse, addProducto, listaProducto, comentariosLista, editarProducto, removeProducto, register, ProductoViewSet
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register('producto', ProductoViewSet)
 
 urlpatterns = [
     #Carrito
@@ -15,7 +19,7 @@ urlpatterns = [
     #Pedidos
     path('pedidos/', pedidos, name="pedidos"),
     #Producto Compra
-    path('productos/producto/', productocompra, name="productocompra"),
+    path('productos/producto/<id>', productocompra, name="productocompra"),
     #Productos gato
     path('productos/gato/', productosgato, name="productosgato"),
     #Productos Hamster
@@ -30,10 +34,15 @@ urlpatterns = [
     path('productos/add/', addProducto, name="addProducto"),
     #Listar productos
     path('productos/lista/', listaProducto, name="listaProducto"),
-    #Editr producto
+    #Editar producto
     path('productos/editar/<id>/', editarProducto, name="editarProducto"),
+    #Eliminar producto
     path('productos/remove/<id>/', removeProducto, name="removeProducto"),
+    #Registrar usuario
     path('register/', register, name="register"),
+    # path('politica-de-privacidad/', politicaDePrivacidad, name="politicaDePrivacidad"),
+    #-API-
+    path('api/', include(router.urls)),
 ]
 
 if settings.DEBUG:

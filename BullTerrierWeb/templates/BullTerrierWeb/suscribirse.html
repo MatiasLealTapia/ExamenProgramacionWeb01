@@ -25,6 +25,7 @@
     <br>
     <main>
         <div class="container">
+            {% if user.is_authenticated %}
             <form action="envio" enctype="multipart/form-data" method="GET" name="formComen">
                 {% csrf_token %}
                 {{ form.as_table }}
@@ -68,6 +69,19 @@
                         </div>
                         <div id="error" class="alert alert-danger" role="alert"></div>
             </form>
+            {% elif user.is_authenticated %}
+            <div class="p-3 border bg-light">
+                <div class="d-flex justify-content-center">
+                    <h2>Por favor, <a href="{% url 'login' %}" style="color: black;">Inicia sesi&oacute;n</a> o <a href="{% url 'register' %}" style="color: black;">Registrate.</a></h2>
+                </div>
+            </div>
+            {% elif not user.is_authenticated %}
+            <div class="p-3 border bg-light">
+                <div class="d-flex justify-content-center">
+                    <h2>Por favor, <a href="{% url 'login' %}" style="color: black;">Inicia sesi&oacute;n</a> o <a href="{% url 'register' %}" style="color: black;">Registrate.</a></h2>
+                </div>
+            </div>
+            {% endif %}
             </div>
     </main>
     {% endblock %}

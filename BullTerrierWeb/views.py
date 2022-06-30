@@ -2,15 +2,21 @@ import imp
 from multiprocessing.spawn import import_main_path
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ComentarioForm, AddProductoForm, CustomUserCreationForm
-from .models import Comentario, Categoria, Producto
+from .models import Comentario, Categoria, Producto, Suscripcion
 from django.contrib import messages
 from os import remove
 from django.core.paginator import Paginator
 from django.http import Http404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, permission_required
+from rest_framework import viewsets
+from .serializers import ProductoSerializer
 
 # Create your views here.
+
+class ProductoViewSet(viewsets.ModelViewSet):
+    queryset = Producto.objects.all()
+    serializer_class = ProductoSerializer
 
 # Vista Carrito
 def carrito(request):
@@ -39,7 +45,7 @@ def pedidos(request):
     return render(request, 'BullTerrierWeb/pedidos.html')
 
 # Vista Producto Compra
-def productocompra(request):
+def productocompra(request, id):
     return render(request, 'BullTerrierWeb/producto/productocompra.html')
 
 # Vista Productos Gato
@@ -186,3 +192,6 @@ def register(request):
         data["form"] = formulario
     
     return render(request, 'BullTerrierWeb/register.html', data)
+
+# def politicaDePrivacidad(request):
+#     return render(request, 'BullTerrierWeb/politica-de-privacidad.html')
