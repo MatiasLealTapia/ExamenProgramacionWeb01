@@ -8,6 +8,7 @@ from os import remove
 from django.core.paginator import Paginator
 from django.http import Http404
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required, permission_required
 
 # Create your views here.
 
@@ -55,7 +56,11 @@ def productoshamster(request):
 
 # Vista Productos Perro
 def productosperro(request):
-    return render(request, 'BullTerrierWeb/producto/productosperro.html')
+    productos = Producto.objects.all().filter(idCat=2)
+    data = {
+        'productos':productos
+    }
+    return render(request, 'BullTerrierWeb/producto/productosperro.html', data)
 
 # Vista Registro
 def registro(request):
@@ -70,6 +75,7 @@ def base(request):
     return render(request, 'BullTerrierWeb/base.html')
 
 # Vista Añadir producto
+@permission_required('BullTerrierWeb.add_producto')
 def addProducto(request):
     if Producto.objects.all().count()==0:
         idProducto=1
@@ -130,6 +136,7 @@ def comentariosLista(request):
     return render(request, 'BullTerrierWeb/comentariosLista.html', datos)
 
 # Vista Editar Producto
+@permission_required('BullTerrierWeb.change_producto')
 def editarProducto(request, id):
     
     producto = get_object_or_404(Producto, idPro=id)
@@ -152,6 +159,7 @@ def editarProducto(request, id):
     return render(request, 'BullTerrierWeb/producto/editar.html', data)
 
 # Eliminar Producto
+@permission_required('BullTerrierWeb.delete_producto')
 def removeProducto(request, id):
     producto = get_object_or_404(Producto, idPro=id)
     if producto.imgPro:

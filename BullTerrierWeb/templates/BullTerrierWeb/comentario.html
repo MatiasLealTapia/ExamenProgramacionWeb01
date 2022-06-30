@@ -26,7 +26,6 @@
     <br>
     <main>
         <div class="container">
-            {% if user.is_authenticated %}
             <form enctype="multipart/form-data" method="post" name="formulario" id="formulario">
                 {% csrf_token %}
                 <div class="mb-3">
@@ -68,13 +67,6 @@
                         </div>
                         <div id="error" class="alert alert-danger" role="alert"></div>
             </form>
-            {% else%}
-            <div class="p-3 border bg-light">
-                <div class="d-flex justify-content-center">
-                    <h2>Por favor, <a href="{% url 'login' %}" style="color: black;">Inicia sesi&oacute;n</a> o <a href="{% url 'register' %}" style="color: black;">Registrate</a> para comentar.</h2>
-                </div>
-            </div>
-            {% endif %}
             </div>
     </main>
     {% endblock %}

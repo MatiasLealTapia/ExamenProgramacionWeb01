@@ -4,7 +4,7 @@ $(document).ready(function() {
         $("#productos").show();
         $(".loading-screen").hide();
     };
-    // // let url = 'https://fakestoreapi.com/products'
+    // let url = 'https://fakestoreapi.com/products'
     // let url = 'https://matiaslealtapia.github.io/APItest/productos/gato.json'
     // const $cargando = document.getElementById("loading");
     // const $tarjetas = document.getElementById("productos");
