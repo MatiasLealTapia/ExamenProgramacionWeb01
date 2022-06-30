@@ -49,6 +49,17 @@
                 </div>
                 
             </div>
+            {% if messages %}
+                {% for m in messages %}
+                    <script>
+                        Swal.fire({
+                            "title": "Felicitaciones",
+                            "text": "{{m}}",
+                            "icon": "success"
+                        })
+                    </script>
+                {% endfor %}
+            {% endif %}
             <div class="container overflow-hidden px-4" id="Informacion">
                 <div class="row gx-5">
                   <div class="col-12">

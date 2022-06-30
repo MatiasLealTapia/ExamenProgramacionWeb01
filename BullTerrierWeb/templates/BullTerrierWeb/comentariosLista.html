@@ -32,25 +32,22 @@
             <br>
             <div class="container-sm">
                 <div class="mb-3">
-                    <div class="row">
-                        <p>Listado de comentarios:</p>
+                    <div>
+                        {% include 'BullterrierWeb/paginator.html' %}
                     </div>
-                    <br>
                     <div class="row">
-                        <table border=2 class="table">
-                            <tr><td>ID Comentario</td>
-                                <td>Nombre</td>
-                                <td>Apellido</td>
-                                <td>Correo</td>
-                                <td>Calificacion</td>
-                                <td>Comentario</td>
+                        <h2>Listado de comentarios:</h2>
+                        <table border=2 class="table table-hover table-striped">
+                            <tr>
+                                <td><b>Nombre<b></td>
+                                <td></td>
+                                <td><b>Calificaci&oacute;n<b></td>
+                                <td><b>Comentario<b></td>
                             </tr>
-                            {% for com in comentarios %}
+                            {% for com in entity %}
                                 <tr>
-                                    <td>{{com.idComent}}</td>
                                     <td>{{com.nombre}}</td>
-                                    <td>{{com.apellido}}</td>
-                                    <td>{{com.correo}}</td>
+                                    <td>******</td>
                                     <td>{% if com.calificacion == 1 %}
                                         Excelente ({{com.calificacion}})
                                         {% elif com.calificacion == 2 %}

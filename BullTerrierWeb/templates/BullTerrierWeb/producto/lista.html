@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% extends 'BullTerrierWeb/base.html' %}
+    {% block content %}
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link href="{% static 'BullTerrierWeb/css/style.css' %}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{% static 'BullTerrierWeb/js/script.js' %}"></script>
+    <title>Lista de productos</title>
+</head>
+<body>
+    <main class="main">
+        <div class="container-sm">
+            <br>
+            <div class="container overflow-hidden px-4" id="Informacion">
+                <div class="row gx-5">
+                    <div class="col-12">
+                        <div class="p-3 border bg-light" style="text-align: center;">
+                            <h1>Productos</h1>
+                            <p>Borra o edita los productos que requieras desde esta p&aacute;gina.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <br>
+                    {% if messages %}
+                        {% for m in messages %}
+                            <script>
+                                Swal.fire({
+                                    "title": "Felicitaciones",
+                                    "text": "{{m}}",
+                                    "icon": "success"
+                                })
+                            </script>
+                        {% endfor %}
+                    {% endif %}
+                    <script>
+                        function eliminarProducto(id) {
+                            Swal.fire({
+                                "title": "¿Estas seguro?",
+                                "text": "Esta acción no se puede deshacer",
+                                "icon": "question",
+                                "showCancelButton":true,
+                                "cancelButtonText": "¡No, Cancelar!",
+                                "confirmButtonText": "Si, Eliminar",
+                                "reverseButtons":true,
+                                "confirmButtonColor": "#dc3545"
+                            })
+                            .then(function(result) {
+                                if(result.isConfirmed) {
+                                    window.location.href = "/productos/remove/"+id+"/"
+                                }
+                            })
+                        }
+                    </script>
+                    <div class="row">
+                        <div class="col-8 col-sm-10">
+                            <h2>Listado de productos:</h2>
+                        </div>
+                        {% if perms.BullTerrierWeb.add_producto %}
+                        <div class="col-4 col-sm-2">
+                            <a class="btn btn-primary" href="{% url 'addProducto' %}">+ Agregar</a>
+                        </div>
+                        {% endif %}
+                        <div>
+                            {% include 'BullterrierWeb/paginator.html' %}
+                        </div>
+                        <hr>
+                        <div class="container-sm">
+                            <table border=2 class="d-flex table table-striped table-hover table-responsive-sm">
+                                <tr>
+                                    <td>ID Producto</td>
+                                    <td>Categoria</td>
+                                    <td>Nombre Producto</td>
+                                    <td>Precio</td>
+                                    <td>Descripci&oacute;n</td>
+                                    <td>Imagen</td>
+                                    {% if perms.BullTerrierWeb.change_producto or perms.BullTerrierWeb.delete_producto %}
+                                    <td>Opciones</td>
+                                    {% endif %}
+                                    <td></td>
+                                </tr>
+                                {% for prod in entity %}
+                                    <tr>
+                                        <td>{{prod.idPro}}</td>
+                                        <td>{{prod.idCat}}</td>
+                                        <td>{{prod.nombrePro}}</td>
+                                        <td>{{prod.precioPro}}</td>
+                                        <td>{{prod.descripPro}}</td>
+                                        {% if prod.imgPro %}
+                                            <td><img src="{{prod.imgPro.url}}" title="{{prod.imgPro.name}}" class="img-producto-sm"></td>
+                                        {% else %}
+                                            <td><img src="" title="Sin imagen" class="img-producto-sm"></td>
+                                        {% endif %}
+                                        {% if perms.BullTerrierWeb.change_producto %}
+                                        <td><a href="{% url 'editarProducto' prod.idPro %}" class="btn btn-primary">Editar</a></td>
+                                        {% endif %}
+                                        {% if perms.BullTerrierWeb.delete_producto %}
+                                        <td><a href="#" onclick="eliminarProducto({{prod.idPro}})" class="btn btn-danger">Borrar</a></td>
+                                        {% endif %}
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {% endblock %}
+</body>
+</html>

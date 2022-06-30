@@ -1,5 +1,4 @@
 body {
-    /* background-image: url('../img/fondo.jpg'); */
     background-color: #ffffff;
     background-size: 300px;
     background-attachment: fixed;
@@ -248,5 +247,5 @@ footer a:hover{
 }
 
 .img-producto-sm {
-  width: 20%;
+  width: 50%;
 }

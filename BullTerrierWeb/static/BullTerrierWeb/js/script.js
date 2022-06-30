@@ -11,8 +11,6 @@ $(document).ready(function() {
             $("#error").html(mensaje);
             $("#error").show();
             event.preventDefault();
-        } else if (mensaje == "") {
-            alert("Tu comentario se envio correctamente. Gracias!")
         }
     })
     $("#formAddProducto").submit(function() {
