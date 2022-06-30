@@ -31,7 +31,7 @@ class Producto(models.Model):
     precioPro = models.IntegerField(verbose_name="Precio Producto")
     descripPro = models.CharField(max_length=500, default="" ,verbose_name="Descripción")
     idCat = models.ForeignKey(Categoria, on_delete=models.CASCADE, default="0", verbose_name="Categoría")
-    imgPro = models.ImageField(upload_to="productos", null=True, blank=True)
+    imgPro = models.ImageField(upload_to="productos", null=True, blank=True, verbose_name="Imagen")
     
     def __str__(self):
         return self.nombrePro

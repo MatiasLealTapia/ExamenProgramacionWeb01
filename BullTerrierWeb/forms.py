@@ -2,6 +2,8 @@ from dataclasses import field, fields
 from django import forms
 from django.forms import ModelForm
 from .models import Comentario, Producto
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 class ComentarioForm(ModelForm):
     class Meta:
@@ -13,7 +15,5 @@ class AddProductoForm(ModelForm):
         model = Producto
         fields = ['idPro', 'nombrePro', 'precioPro', 'descripPro', 'idCat' , 'imgPro']
         
-class RemoveProductoForm(ModelForm):
-    class Meta:
-        model = Producto
-        fields = ['idPro']
+class CustomUserCreationForm(UserCreationForm):
+    pass

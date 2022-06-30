@@ -12,18 +12,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="{% static 'BullTerrierWeb/js/productos-perro.js' %}"></script>
-    <title>Bull Terrier - Perros</title>
+    <script src="{% static 'BullTerrierWeb/js/productos-gato.js' %}"></script>
+    <title>Bull Terrier - Gatos</title>
 </head>
 <body>
     <main class="main" style="background-color: rgba(85, 85, 85, 0.719);">
         <div class="container-sm">
-            <br>
+        <br>
             <div class="container overflow-hidden px-4" id="Informacion">
                 <div class="row gx-5">
                     <div class="col-12">
                         <div class="p-3 border bg-light" style="text-align: center;">
-                            <h1>Productos para tu perro!</h1> <p>Aqui encontrar&aacute;s variedad de productos para tu perro de elecci&oacute;n &uacute;nica.</p>
+                            <h1>Productos para tu gato!</h1> <p>Aqui encontrar&aacute;s variedad de productos para tu gato de elecci&oacute;n &uacute;nica.</p>
                         </div>
                     </div>
                 </div>
@@ -31,14 +31,33 @@
             <br>
         </div>
         <div class="loading-screen">
-            <h1 id="loading">CARGANDO...</h1>
+          <h1 id="loading">CARGANDO...</h1>
         </div>
+        {% load humanize %}
         <div class="album py-5 bg-light">
             <div class="container">
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="productos">
+                    {% for prod in productos %}
+                        <div class="col">
+                            <form action="{% url 'productocompra' %}" id="miForm">
+                                <div class="card shadow-sm" id="imagen-productos">
+                                    <input type="text" name="category" id="category" value="{{prod.idCat}}" style="display: none;">
+                                    <input type="text" name="id" id="id" value="{{prod.idPro}}" style="display: none;">
+                                    <img src='{{prod.imgPro.url}}' alt="logo.png" class="bd-placeholder-img card-img-top" width="100%" height="225" role="img">
+                                    <div class="card-body" id="titulo-productos">
+                                        <p class="card-text">{{prod.nombrePro}}</p> 
+                                        <div class="d-flex justify-content-between align-items-center" id="precio-productos">
+                                            <small class="text-muted">${{prod.precioPro}} CLP</small> 
+                                            <input type="submit" class="btn btn-primary" id="enviar" value="Ver producto">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
-        </div>              
+        </div>
     </main>
     {% endblock %}
 </body>

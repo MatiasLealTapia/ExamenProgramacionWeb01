@@ -1,5 +1,28 @@
 {% load static %}
+<head>
+    <link rel="icon" type="image/ico" href="{% static 'BullTerrierWeb/img/favicon.ico' %}"/>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
 <header class="header" id="barramenu">
+    <script>
+        function cerrarSesion() {
+            Swal.fire({
+                "title": "¿Estas seguro?",
+                "text": "Se cerrará tu sesión",
+                "icon": "question",
+                "showCancelButton":true,
+                "cancelButtonText": "¡No, Cancelar!",
+                "confirmButtonText": "Si, Cerrar",
+                "reverseButtons":true,
+                "confirmButtonColor": "#0d6efd"
+            })
+            .then(function(result) {
+                if(result.isConfirmed) {
+                    window.location.href = "/accounts/logout/"
+                }
+            })
+        }
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark">
         <div class="container-fluid">
@@ -19,18 +42,28 @@
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item text-black" href="{% url 'productosgato' %}">Gatos</a></li>
                             <li><a class="dropdown-item" href="{% url 'productosperro' %}">Perros</a></li>
-                            <li><a class="dropdown-item" href="{% url 'productoshamster' %}">Ejemplo</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'carrito' %}">Carrito</a>
                     </li>
+                    {% if perms.BullTerrierWeb.view_producto %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'addProducto' %}">Nuevo Producto</a>
+                        <a class="nav-link" href="{% url 'listaProducto' %}">Productos (ADMIN)</a>
+                    </li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="cerrarSesion()">Cerrar Sesi&oacute;n</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'registro' %}">Iniciar Sesi&oacute;n</a>
+                        <a class="nav-link" href="#">@{{user.username}}</a>
                     </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Iniciar Sesi&oacute;n</a>
+                    </li>
+                    {% endif %}
                 </ul>
                 <form class="d-flex container-sm">
                     <input class="form-control me-2" type="search" placeholder="¿Buscas algo?" aria-label="Search">
@@ -67,22 +100,22 @@
         <div class="right box">
             <br>
             <div class="topic">Dejanos tu opinion, reclamo o sugerencia</div>
-            <form action="comentario">
+            <form action="{% url 'comentario' %}">
                 <div class="enviar">
                     <input type="submit" name="" value="Escribe tu comentario">
                 </div>
             </form>
-            <form action="comentariosLista">
+            <form action="{% url 'comentariosLista' %}">
                 <div class="enviar">
                     <input type="submit" name="" value="Listado de comentarios">
                 </div>
             </form>
                 <div class="media-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.facebook.com/BullTerrier" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/BullTerrier" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.twitter.com/BullTerrier" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.youtube.com/c/BullTerrier" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.linkedin.com/BullTerrier" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                 </div>
         </div>
     </div>

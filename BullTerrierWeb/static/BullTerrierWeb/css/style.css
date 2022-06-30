@@ -1,5 +1,4 @@
 body {
-    /* background-image: url('../img/fondo.jpg'); */
     background-color: #ffffff;
     background-size: 300px;
     background-attachment: fixed;
@@ -173,7 +172,7 @@ footer .content .media-icons a{
 footer .bottom{
   width: 100%;
   text-align: right;
-  color: #000000;
+  color: #ffffff;
   padding: 0 40px 5px 0;
 }
 footer .bottom a{
@@ -248,5 +247,5 @@ footer a:hover{
 }
 
 .img-producto-sm {
-  width: 20%;
+  width: 50%;
 }
