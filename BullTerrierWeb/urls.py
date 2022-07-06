@@ -1,7 +1,7 @@
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import carrito, comentario, home, pedidos, productocompra, productosgato, productoshamster, productosperro, registro, suscribirse, addProducto, listaProducto, comentariosLista, editarProducto, removeProducto, register
+from .views import carrito, comentario, home, pedidos, productocompra, buscarProducto, productosgato, productoshamster, productosperro, registro, suscribirse, addProducto, listaProducto, comentariosLista, editarProducto, removeProducto, register
 
 urlpatterns = [
     #Carrito
@@ -15,7 +15,9 @@ urlpatterns = [
     #Pedidos
     path('pedidos/', pedidos, name="pedidos"),
     #Producto Compra
-    path('productos/producto/', productocompra, name="productocompra"),
+    path('productos/producto/<id>/', productocompra, name="productocompra"),
+    #Producto busqueda
+    path('productos/', buscarProducto, name="buscarProducto"),
     #Productos gato
     path('productos/gato/', productosgato, name="productosgato"),
     #Productos Hamster
