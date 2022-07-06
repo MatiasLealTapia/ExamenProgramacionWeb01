@@ -2,6 +2,7 @@ from distutils.command.upload import upload
 from django.db import models
 import datetime
 import os
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Usuario(models.Model):
@@ -64,3 +65,10 @@ class Comentario(models.Model):
     comentario = models.CharField(max_length=500, null=True, verbose_name="Comentario")
     def __str__(self):
         return self.correo
+    
+class Suscripcion(models.Model):
+    usu = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, verbose_name="Usuario")
+    suscrito = models.BooleanField(default='False')
+    
+    def __str__(self):
+        return self.usu.username

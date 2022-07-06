@@ -1,5 +1,6 @@
+from csv import list_dialects
 from django.contrib import admin
-from .models import Categoria, Comentario, Compra, Usuario, Producto, Pedido
+from .models import Categoria, Comentario, Compra, Usuario, Producto, Pedido, Suscripcion
 
 # Register your models here.
 
@@ -16,6 +17,9 @@ class ComentarioAdmin(admin.ModelAdmin):
     
 class CategoriasAdmin(admin.ModelAdmin):
     list_display = ["nomCat","idCat"]
+    
+class SuscripcionAdmin(admin.ModelAdmin):
+    list_display = ["usu","suscrito"]
 
 admin.site.register(Usuario)
 admin.site.register(Producto, ProductoAdmin)
@@ -23,3 +27,4 @@ admin.site.register(Compra)
 admin.site.register(Pedido)
 admin.site.register(Categoria, CategoriasAdmin)
 admin.site.register(Comentario, ComentarioAdmin)
+admin.site.register(Suscripcion, SuscripcionAdmin)
