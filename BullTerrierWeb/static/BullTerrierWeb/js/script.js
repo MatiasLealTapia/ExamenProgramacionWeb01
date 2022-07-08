@@ -26,6 +26,19 @@ $(document).ready(function() {
             event.preventDefault();
         }
     })
+    $("#SuscribirseForm").submit(function() {
+        var mensaje = "";
+
+        if ($("#id_donacion").val() < 500) {
+            mensaje = "Escoga un monto igual o superior a $500";
+        }
+
+        if (mensaje != "") {
+            $("#error").html(mensaje);
+            $("#error").show();
+            event.preventDefault();
+        }
+    })
     const $seleccionArchivo = document.querySelector("#id_imgPro");
     const $previsualizar = document.querySelector("#imagenPrevisualizada")
     $seleccionArchivo.addEventListener("change", () => {
@@ -62,7 +75,6 @@ function pierdeFoco() {
         $("#error").show();
     }
 }
-
 
 
 

@@ -17,7 +17,23 @@
 </head>
 <body>
     <main class="main" style="background-color: rgba(85, 85, 85, 0.719);">
-
+        <div class="container-sm">
+            <br>
+                <div class="container overflow-hidden px-4" id="Informacion">
+                    <div class="row gx-5">
+                        <div class="col-12">
+                            <div class="p-3 border bg-light" style="text-align: center;">
+                                {% if not request.GET %}
+                                <h1>Estas buscando todos los productos</h1> <p>Variedad de productos para tu gato y tu perro.</p>
+                                {% elif request.GET %}
+                                <h1>Estas buscando {{ request.GET.search }}</h1> <p>Todos los productos con {{ request.GET.search }}.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
         <div class="loading-screen">
           <h1 id="loading">CARGANDO...</h1>
         </div>

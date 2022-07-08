@@ -38,6 +38,7 @@
             <div class="container">
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="productos">
                     {% for prod in productos %}
+                    {% if prod.mostrarPro == True %}
                     <div class="col">
                         <div class="card shadow-sm" id="imagen-productos">
                             <a href="{% url 'productocompra' prod.idPro %}"><img src='{{prod.imgPro.url}}' alt="logo.png" class="bd-placeholder-img card-img-top" width="100%" height="225" role="img"></a>
@@ -50,6 +51,7 @@
                             </div>
                         </div>
                     </div>
+                    {% endif %}
                 {% endfor %}
                 </div>
             </div>

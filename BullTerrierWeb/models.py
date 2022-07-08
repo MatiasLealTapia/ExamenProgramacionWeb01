@@ -31,11 +31,19 @@ class Producto(models.Model):
     nombrePro = models.CharField(max_length=100, verbose_name="Nombre Producto")
     precioPro = models.IntegerField(verbose_name="Precio Producto")
     descripPro = models.CharField(max_length=500, default="" ,verbose_name="Descripción")
+    cantidadPro = models.IntegerField(verbose_name="Cantidad", default=1)
     idCat = models.ForeignKey(Categoria, on_delete=models.CASCADE, default="0", verbose_name="Categoría")
     imgPro = models.ImageField(upload_to="productos", null=True, blank=True, verbose_name="Imagen")
+    mostrarPro = models.BooleanField(default='True')
     
     def __str__(self):
         return self.nombrePro
+
+class Carrito(models.Model):
+    idCarrito = models.AutoField(primary_key=True, verbose_name="Id")
+    cantidad = models.IntegerField(verbose_name="Cantidad", default=1)
+    idPro = models.ForeignKey(Producto, on_delete=models.CASCADE, verbose_name="Id Producto", default="0")
+    usuario = models.IntegerField(verbose_name="Nombre de Usuario", default=0)
 
 class Compra(models.Model):
     idCom = models.IntegerField(primary_key=True, verbose_name="Id Compra")
@@ -68,7 +76,8 @@ class Comentario(models.Model):
     
 class Suscripcion(models.Model):
     usu = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, verbose_name="Usuario")
-    suscrito = models.BooleanField(default='False')
+    donacion = models.IntegerField(verbose_name="Donación", default=0)
+    suscrito = models.BooleanField(default='True')
     
     def __str__(self):
         return self.usu.username

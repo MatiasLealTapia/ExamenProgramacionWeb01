@@ -13,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="{% static 'BullTerrierWeb/js/script.js' %}"></script>
-    <title>Suscribete</title>
+    <title>Suscribete | Bull Terrier</title>
 </head>
 <body>
     <br>
@@ -25,61 +25,95 @@
     <br>
     <main>
         <div class="container">
-            {% if user.is_authenticated %}
-            <form action="envio" enctype="multipart/form-data" method="GET" name="formComen">
+            {% if user.is_authenticated and not suscrito and not noIdentificado %}
+            <form enctype="multipart/form-data" method="post" name="SuscribirseForm" id="SuscribirseForm">
                 {% csrf_token %}
-                {{ form.as_table }}
                 <div class="mb-3">
                     <div class="row">
                         <div class="col">
-                            <label for="nombre" class="form-label">Nombre (Obligatorio)</label>
-                            <input type="text" class="form-control" name="nombre" placeholder="Ingrese su Nombre" required>
+                            <label for="nombre" class="form-label">Nombre de Usuario</label>
+                            <input type="text" class="form-control" value="{{user.username}}" readonly>
+                            <input type="text" class="form-control" id="id_usu" name="usu" value="{{user.id}}" style="display: none;">
                         </div>
-                        <div class="col">
-                            <label for="apellido" class="form-label">Apellido (Obligatorio)</label>
-                            <input type="text" class="form-control" name="apellido" placeholder="Ingrese su Apellido" required>
-                        </div>
+                        {% comment %} <div class="col">
+                            <label for="apellido" class="form-label">Apellido</label>
+                            <input type="text" class="form-control" name="apellido" value="" readonly>
+                        </div> {% endcomment %}
                     </div>
                 </div>
-                <div class="col">
-                    <label for="correo" class="form-label">Direcci&oacute;n de Correo (Obligatorio)</label>
-                    <input type="email" class="form-control" id="correo" name="correo" required>
-                </div>
+                {% comment %} <div class="col">
+                    <label for="correo" class="form-label">Direcci&oacute;n de Correo</label>
+                    <input type="email" class="form-control" id="correo" name="correo" value="{{user.mail}}" readonly>
+                </div> {% endcomment %}
+                <hr>
                 <label for="donacion">Donaci&oacute;n (Obligatorio)</label>
                 <div class="mb-3 form-floating">
-                    <select name="donacion" id="donaciones" class="form-select">
-                    <option selected>Selecciona alguna opci&oacute;n</option>
-                        <option value="1">$1.000</option>
-                        <option value="2">$2.000</option>
-                        <option value="3">$3.000</option>
-                        <option value="4">$4.000</option>
-                        <option value="5">$5.000</option>
-                        <option onselect="">$5.000</option>
-                        
+                    <select name="donacion" id="id_donacion" class="form-select" onselect="pierdeFoco()" required>
+                    <option value="0" selected>Selecciona alguna opci&oacute;n</option>
+                        <option value="1000">$1.000</option>
+                        <option value="2000">$2.000</option>
+                        <option value="3000">$3.000</option>
+                        <option value="4000">$4.000</option>
+                        <option value="5000">$5.000</option>
                 </select>
+                <input type="checkbox" name="suscrito" id="id_suscrito" style="display: none;" checked>
+                <hr>
+                <div class="card text-center text-white bg-secondary mb-3">
+                    <div class="card-body">
+                    <p>Al suscribirte no importa el monto de donaci&oacute;n... Esto significa que por el minimo puedes conseguir los mismos beneficios, cada uno elige la donaci&oacute;n que quiera dejar.</p><p>(No puedes suscribirte mas de una vez)</p>
+                    </div>
                 </div>
-                <label for="miCom">Escribenos tu comentario (Opcional)</label>
+                </div>
+                {% comment %} <label for="miCom">Escribenos tu comentario (Opcional)</label>
                 <div class="mb-3">
                     <div class="row">
                         <div class="mb-3 form-floating">
                             <textarea class="form-control" name="miCom" id="miDor" cols="50" rows="30" placeholder="comentario"></textarea>
-                        </div>
+                        </div> {% endcomment %}
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary">Enviar</button>
+                            <button type="submit" class="btn btn-primary" id="enviar" value="Enviar">Enviar</button>
                         </div>
                         <div id="error" class="alert alert-danger" role="alert"></div>
             </form>
-            {% elif user.is_authenticated %}
+            {% elif user.is_authenticated and suscrito and not noIdentificado %}
             <div class="p-3 border bg-light">
                 <div class="d-flex justify-content-center">
-                    <h2>Por favor, <a href="{% url 'login' %}" style="color: black;">Inicia sesi&oacute;n</a> o <a href="{% url 'register' %}" style="color: black;">Registrate.</a></h2>
+                    <h2>¡Ya estas suscrito, disfruta de tus descuentos!</h2>
+                </div>
+                <br>
+                <div class="row justify-content-md-center">
+                    <div class="col col-md-auto">
+                        <a href="{% url 'productosgato' %}" class="btn btn-primary">Productos Gato</a>
+                    </div>
+                    <div class="col-md-auto">
+                        <a href="{% url 'index' %}" class="btn btn-secondary">Inicio</a>
+                    </div>
+                    <div class="col col-md-auto">
+                        <a href="{% url 'productosperro' %}" class="btn btn-primary">Productos Perro</a>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <br>
+            {% elif user.is_authenticated and noIdentificado %}
+            <br>
+            <div class="p-3 border bg-light">
+                <div class="d-flex justify-content-center">
+                    <h2>Hubo un error, por favor intenta mas tarde.</h2>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-center">
+                    <p>O intenta comunicarte con servicio al cliente <b>ayuda@bullterrier.cl</b> .</p>
                 </div>
             </div>
+            <br>
             {% elif not user.is_authenticated %}
             <div class="p-3 border bg-light">
+                <br>
                 <div class="d-flex justify-content-center">
-                    <h2>Por favor, <a href="{% url 'login' %}" style="color: black;">Inicia sesi&oacute;n</a> o <a href="{% url 'register' %}" style="color: black;">Registrate.</a></h2>
+                    <h2>Por favor, <a href="{% url 'login' %}" style="color: black;">Inicia sesi&oacute;n</a> o <a href="{% url 'register' %}" style="color: black;">Registrate</a> para suscribirte.</h2>
                 </div>
+                <br>
             </div>
             {% endif %}
             </div>

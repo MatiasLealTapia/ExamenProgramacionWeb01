@@ -1,6 +1,6 @@
 from csv import list_dialects
 from django.contrib import admin
-from .models import Categoria, Comentario, Compra, Usuario, Producto, Pedido, Suscripcion
+from .models import Categoria, Comentario, Compra, Usuario, Producto, Pedido, Suscripcion, Carrito
 
 # Register your models here.
 
@@ -25,6 +25,7 @@ admin.site.register(Usuario)
 admin.site.register(Producto, ProductoAdmin)
 admin.site.register(Compra)
 admin.site.register(Pedido)
+admin.site.register(Carrito)
 admin.site.register(Categoria, CategoriasAdmin)
 admin.site.register(Comentario, ComentarioAdmin)
 admin.site.register(Suscripcion, SuscripcionAdmin)

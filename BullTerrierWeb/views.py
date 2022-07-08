@@ -1,26 +1,73 @@
 from multiprocessing.spawn import import_main_path
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ComentarioForm, AddProductoForm, CustomUserCreationForm
-from .models import Comentario, Categoria, Producto, Suscripcion
+from .forms import ComentarioForm, AddProductoForm, CustomUserCreationForm, SuscribirseForm, CarritoForm
+from .models import Comentario, Categoria, Producto, Suscripcion, Carrito
 from django.contrib import messages
 from os import remove
 from django.core.paginator import Paginator
 from django.http import Http404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.models import User
 from django.db.models import Q
-from rest_framework import viewsets
-from .serializers import ProductoSerializer
+from rest_framework import viewsets, status
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.parsers import JSONParser
+from rest_framework.authtoken.models import Token
+from .serializers import ProductoSerializer, CategoriaSerializer, SuscripcionSerializer
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
+    
+class CategoriaViewSet(viewsets.ModelViewSet):
+    queryset = Categoria.objects.all()
+    serializer_class = CategoriaSerializer
+    
+class SuscritosViewSet(viewsets.ModelViewSet):
+    queryset = Suscripcion.objects.all()
+    serializer_class = SuscripcionSerializer
 
 # Vista Carrito
 def carrito(request):
-    return render(request, 'BullTerrierWeb/carrito.html')
+    usuario = request.user
+    if usuario.is_authenticated:
+        vacio = True
+        try:
+            comprasProductos = Carrito.objects.filter(usuario=usuario.id)
+            if len(comprasProductos)!=0:
+                vacio = False
+                data = {
+                    'vacio':vacio,
+                    'productos':comprasProductos,
+                    'idUsuario':usuario.id
+                }
+            else:
+                vacio = True
+                data = {
+                    'vacio':vacio
+                }
+        except:
+            data = {
+                'vacio':vacio
+            }
+    else:
+        data = {
+            'vacio': True
+        }
+    return render(request, 'BullTerrierWeb/carrito.html', data)
+
+def carritoComprado(request, id):
+    productos = Carrito.objects.filter(usuario=id)
+    for prod in productos:
+        prod.delete()
+    messages.success(request, "Comprado correctamente, muchas gracias por confiar en nosotros.")
+    return redirect(to="carrito")
 
 # Vista Comentario
 def comentario(request):
@@ -45,13 +92,39 @@ def pedidos(request):
     return render(request, 'BullTerrierWeb/pedidos.html')
 
 # Vista Producto Compra
+@login_required
 def productocompra(request, id):
+    usuario = request.user
     producto = get_object_or_404(Producto, idPro=id)
     
     data = {
         'prod':producto
     }
+    
+    if request.method=='POST':
+        carritoNuevo = CarritoForm(request.POST)
+        print(carritoNuevo)
+        if carritoNuevo.is_valid():
+            carritoNuevo.save()
+            messages.success(request, "Agregado correctamente al carrito")
+        return redirect(to="index")
     return render(request, 'BullTerrierWeb/producto/productocompra.html', data)
+
+@login_required
+def agregarAlCarrito(request, id):
+    # producto = get_object_or_404(Producto, idPro=id)
+    # productoId = int(producto.idPro)
+    # usuario = request.user
+    # agregarCarrito = CarritoForm()
+    # agregarCarrito.idCarrito = 1
+    # agregarCarrito.cantidad = 1
+    # agregarCarrito.idPro = productoId
+    # agregarCarrito.usuario = usuario.id
+    # if agregarCarrito.is_valid():
+    #     agregarCarrito.save()
+    # agregarCarrito = Carrito.objects.create(idCarrito=1, cantidad=1, idPro=productoId, usuario=usuario.id)
+    
+    return redirect('/productos/producto/'+id+'/')
 
 # Vista Productos Gato
 def productosgato(request):
@@ -79,13 +152,48 @@ def registro(request):
 
 # Vista Suscribirse
 def suscribirse(request):
-    return render(request, 'BullTerrierWeb/suscribirse.html')
+    usuario = request.user
+    if usuario.is_authenticated:
+        try:
+            usuarioSuscrito = get_object_or_404(Suscripcion, usu=usuario)
+            suscrito = False
+            if usuarioSuscrito.suscrito:
+                suscrito = True
+                data = {
+                    'suscrito':suscrito
+                }
+            else:
+                data = {
+                    'suscrito':suscrito
+                }
+        except:
+            data = {
+                'noIdentificado':True,
+                'suscrito':False
+            }
+    else:
+        data = {
+            
+        }
+    if request.method=='POST':
+        suscribirNuevo = SuscribirseForm(data=request.POST, instance=usuarioSuscrito)
+        print(suscribirNuevo)
+        if suscribirNuevo.is_valid():
+            suscribirNuevo.save()
+            messages.success(request, "Muchas gracias por tu donacion, disfruta de tus descuentos")
+        return redirect(to="index")
+    
+    return render(request, 'BullTerrierWeb/suscribirse.html', data)
 
 # Base (header y footer)
 def base(request):
     return render(request, 'BullTerrierWeb/base.html')
 
+# Busqueda de producto
 def buscarProducto(request):
+    data={
+        'productos':Producto.objects.all()
+    }
     queryset = request.GET.get("search")
     print(queryset)
     if queryset:
@@ -124,6 +232,8 @@ def addProducto(request):
             producto.nombrePro = request.POST.get("id_nombrePro")
             producto.precioPro = request.POST.get("id_precioPro")
             producto.descripPro = request.POST.get("id_descripPro")
+            producto.cantidadPro = request.POST.get("id_cantidadPro")
+            producto.mostrarPro = request.POST.get("id_mostrarPro")
             producto.idCat = request.POST.get("id_idCat")
             producto.imgPro = request.FILES.get("id_imgPro")
         
@@ -217,5 +327,62 @@ def register(request):
     
     return render(request, 'BullTerrierWeb/register.html', data)
 
-# def politicaDePrivacidad(request):
-#     return render(request, 'BullTerrierWeb/politica-de-privacidad.html')
+def politicaDePrivacidad(request):
+    return render(request, 'BullTerrierWeb/politica-de-privacidad.html')
+
+@csrf_exempt
+@api_view(['GET', 'POST'])
+@permission_classes((IsAuthenticated,))
+def suscritos(request):
+    if request.method=='GET':
+        suscripcion = Suscripcion.objects.all() #<=> SELECT * FROM Producto
+        serializer = SuscripcionSerializer(suscripcion, many=True)
+        return Response(serializer.data)
+    elif request.method=='POST':
+        data = JSONParser().parse(request)
+        serializer = SuscripcionSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  
+        
+@api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes((IsAuthenticated,))
+def detalle_suscritos(request, id):
+    try:
+        donacion = Suscripcion.objects.get(id=id)
+    except Suscripcion.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method=='GET':
+        serializer=SuscripcionSerializer(donacion)
+        return Response(serializer.data)
+
+    if request.method=='PUT': 
+        data = JSONParser().parse(request)
+        serializer = SuscripcionSerializer(donacion, data=data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+
+    elif request.method=='DELETE':
+        donacion.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+@login_required
+def lista_suscritos(request):
+
+    url = "http://127.0.0.1:8000/suscritos"
+    token = Token.objects.get(user=request.user)
+    headers = {'Authorization': f'Token {token}'}
+
+    suscripciones = request.get(url, headers=headers).json()
+
+    data = {
+        'suscripciones' : suscripciones,
+    }
+
+    return render(request, 'suscritos/lista.html', data)

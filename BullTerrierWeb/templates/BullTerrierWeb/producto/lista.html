@@ -85,6 +85,7 @@
                                     <td>Nombre Producto</td>
                                     <td>Precio</td>
                                     <td>Descripci&oacute;n</td>
+                                    <td>Stock</td>
                                     <td>Imagen</td>
                                     {% if perms.BullTerrierWeb.change_producto or perms.BullTerrierWeb.delete_producto %}
                                     <td>Opciones</td>
@@ -98,6 +99,7 @@
                                         <td>{{prod.nombrePro}}</td>
                                         <td>{{prod.precioPro}}</td>
                                         <td>{{prod.descripPro}}</td>
+                                        <td>{{prod.cantidadPro}}</td>
                                         {% if prod.imgPro %}
                                             <td><img src="{{prod.imgPro.url}}" title="{{prod.imgPro.name}}" class="img-producto-sm"></td>
                                         {% else %}

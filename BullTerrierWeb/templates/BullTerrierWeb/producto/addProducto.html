@@ -52,6 +52,17 @@
                     <textarea type="text" class="form-control" name="descripPro" id="id_descripPro" rows="5" required></textarea>
                 </div>
                 <br>
+                <div class="row">
+                    <div class="col">
+                        <label for="id_cantidadPro" class="form-label">Stock</label>
+                        <input type="number" class="form-control" name="cantidadPro" id="id_cantidadPro" placeholder="Cantidad (solo numeros)" required>
+                    </div>
+                    <div class="col">
+                        <label for="id_mostrarPro" class="form-label">Visible</label><br>
+                        <input type="checkbox" name="mostrarPro" id="id_mostrarPro" checked> &#x2714;
+                    </div>
+                </div>
+                <br>
                 <label for="id_idCat">Categor&iacute;a</label>
                 <div class="mb-3 form-floating">
                     <select class="form-select" name="idCat" id="id_idCat" onblur="pierdeFoco()" required>

@@ -1,21 +1,26 @@
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import carrito, comentario, home, pedidos, productocompra, buscarProducto, productosgato, productoshamster, productosperro, registro, suscribirse, addProducto, listaProducto, comentariosLista, editarProducto, removeProducto, register, ProductoViewSet
+from .views import carrito, comentario, home, pedidos, productocompra, buscarProducto, productosgato, productoshamster, productosperro, registro, suscribirse, addProducto, listaProducto, comentariosLista, editarProducto, removeProducto, register, politicaDePrivacidad, detalle_suscritos, suscritos, lista_suscritos, agregarAlCarrito, carritoComprado, ProductoViewSet, CategoriaViewSet, SuscritosViewSet
+from .viewlogin import login_user
 from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register('producto', ProductoViewSet)
+router.register('categoria', CategoriaViewSet)
+# router.register('suscritos', SuscritosViewSet)
 
 urlpatterns = [
+    #Index
+    path('', home, name="index"),
     #Carrito
     path('carrito/', carrito, name="carrito"),
+    #Carrito Comprado
+    path('carrito/comprado/<id>/', carritoComprado, name="carritoComprado"),
     #Comentario
     path('comentario/', comentario, name="comentario"),
     #Comentarios tabla
     path('comentariosLista/', comentariosLista, name="comentariosLista"),
-    #Index
-    path('', home, name="index"),
     #Pedidos
     path('pedidos/', pedidos, name="pedidos"),
     #Producto Compra
@@ -40,11 +45,17 @@ urlpatterns = [
     path('productos/editar/<id>/', editarProducto, name="editarProducto"),
     #Eliminar producto
     path('productos/remove/<id>/', removeProducto, name="removeProducto"),
+    path('productos/addCarrito/<id>/', agregarAlCarrito, name="agregarAlCarrito"),
     #Registrar usuario
     path('register/', register, name="register"),
-    # path('politica-de-privacidad/', politicaDePrivacidad, name="politicaDePrivacidad"),
+    path('politica-de-privacidad/', politicaDePrivacidad, name="politicaDePrivacidad"),
     #-API-
     path('api/', include(router.urls)),
+    path('login_user/', login_user, name='login_user'),
+    path('suscritos/', suscritos, name='suscritos'),
+    path('suscritos/lista', lista_suscritos, name='lista_suscritos'),
+    path('detalle_suscritos/<id>', detalle_suscritos, name='detalle_suscritos'),
+    
 ]
 
 if settings.DEBUG:

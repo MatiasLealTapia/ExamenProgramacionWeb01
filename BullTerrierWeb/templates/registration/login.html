@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
    <head>
+      {% load socialaccount %}
+      {% providers_media_js %}
       {% load static %}
       <link rel="icon" type="image/ico" href="{% static 'BullTerrierWeb/img/favicon.ico' %}"/>
       <meta charset="utf-8">
@@ -47,7 +49,8 @@
                     ¿Cliente nuevo? <a href="">Registrarse</a>
                   </div>
                   <div class="signup-link">
-                     <a class="socialaccount_provider google fab fa-google size_social text-info" aria-hidden="true" href="/accountsA/google/login/?process=login" title="Google">Iniciar sesion con Google <img src="{% static 'BullTerrierWeb/img/Google-icon.png' %}" width=10></a>
+                     <a class="socialaccount_provider google fab fa-google size_social text-info" aria-hidden="true" href="{% provider_login_url 'google' %}" title="Google">Iniciar sesion con Google <img src="{% static 'BullTerrierWeb/img/Google-icon.png' %}" width=10></a>
+                     {% comment %} <a href="{% provider_login_url 'google' %}">Login With Google</a> {% endcomment %}
                   </div>
                </form>
                <form action="#" class="signup">
