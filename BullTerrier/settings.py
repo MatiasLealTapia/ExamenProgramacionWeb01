@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'mathfilters',
 ]
 
 X_FRAME_OPTIONS = "SAMEORIGIN"

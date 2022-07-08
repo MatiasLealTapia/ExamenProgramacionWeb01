@@ -36,6 +36,17 @@ class SuscritosViewSet(viewsets.ModelViewSet):
 # Vista Carrito
 def carrito(request):
     usuario = request.user
+    suscrito = False
+    if usuario.is_authenticated:
+        try:
+            usuarioSuscrito = get_object_or_404(Suscripcion, usu=usuario)
+            suscrito = False
+            if usuarioSuscrito.suscrito:
+                suscrito = True
+            else:
+                suscrito = False
+        except:
+            suscrito = False
     if usuario.is_authenticated:
         vacio = True
         try:
@@ -45,20 +56,24 @@ def carrito(request):
                 data = {
                     'vacio':vacio,
                     'productos':comprasProductos,
-                    'idUsuario':usuario.id
+                    'idUsuario':usuario.id,
+                    'suscrito':suscrito
                 }
             else:
                 vacio = True
                 data = {
-                    'vacio':vacio
+                    'vacio':vacio,
+                    'suscrito':suscrito
                 }
         except:
             data = {
-                'vacio':vacio
+                'vacio':vacio,
+                'suscrito':suscrito
             }
     else:
         data = {
-            'vacio': True
+            'vacio': True,
+            'suscrito':suscrito
         }
     return render(request, 'BullTerrierWeb/carrito.html', data)
 

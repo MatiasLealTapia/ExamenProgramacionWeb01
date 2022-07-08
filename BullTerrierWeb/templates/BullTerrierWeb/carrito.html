@@ -3,6 +3,7 @@
     {% extends 'BullTerrierWeb/base.html' %}
     {% block content %}
 <head>
+    {% load mathfilters %}
     {% load static %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -61,7 +62,12 @@
                                 <div class="card-body" id="titulo-productos">
                                     <p class="card-text">{{prod.idPro.nombrePro}}</p> 
                                     <div class="d-flex justify-content-between align-items-center" id="precio-productos">
+                                        {% if suscrito %}
+                                        <mark class="text">${{prod.idPro.precioPro | mul:0.95 }} CLP</mark> 
+                                        <del class="text-muted text-target">${{prod.idPro.precioPro}} CLP</del>
+                                        {% else %}
                                         <small class="text-muted">${{prod.idPro.precioPro}} CLP</small> 
+                                        {% endif %}
                                         <a href="{% url 'productocompra' prod.idPro %}" type="submit" class="btn btn-primary" id="enviar">Ver producto</a>
                                     </div>
                                 </div>

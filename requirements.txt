@@ -4,3 +4,4 @@ django-admin-interface
 django-rest-framework
 social-auth-app-django
 django-allauth
+django-mathfilters
