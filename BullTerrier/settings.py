@@ -94,6 +94,17 @@ WSGI_APPLICATION = 'BullTerrier.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.oracle',
+#         'NAME': 'xe',
+#         'USER': 'BULLTERRIER',
+#         'PASSWORD': 'encrypted',
+#         'HOST': 'localhost',
+#         'PORT': '8000',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
